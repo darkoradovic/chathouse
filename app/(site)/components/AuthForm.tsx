@@ -19,14 +19,12 @@ const AuthForm = () => {
   const router = useRouter();
   const [variant, setVariant] = useState<Variant>("LOGIN");
   const [isLoading, setIsLoading] = useState(false);
-  const searchParams = useSearchParams();
-  console.log(session);
 
-  /*  useEffect(() => {
+  useEffect(() => {
     if (session?.status === "authenticated") {
       router.push("/conversations");
     }
-  }, [session?.status, router]); */
+  }, [session?.status, router]);
 
   const toggleVariant = useCallback(() => {
     if (variant === "LOGIN") {
@@ -66,7 +64,7 @@ const AuthForm = () => {
           }
 
           if (callback?.ok) {
-            router.push("/conversations");
+            router.push("/users");
           }
         })
         .catch(() => toast.error("Something went wrong!"))
@@ -84,7 +82,7 @@ const AuthForm = () => {
           }
 
           if (callback?.ok) {
-            router.push("/conversations");
+            router.push("/users");
           }
         })
         .finally(() => setIsLoading(false));
@@ -101,7 +99,7 @@ const AuthForm = () => {
         }
 
         if (callback?.ok) {
-          router.push("/conversations");
+          router.push("/users");
         }
       })
       .finally(() => setIsLoading(false));
@@ -109,7 +107,6 @@ const AuthForm = () => {
 
   return (
     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-      <button onClick={() => signOut()}>Logout</button>
       <div
         className="
         bg-white

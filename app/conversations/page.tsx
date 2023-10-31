@@ -2,15 +2,15 @@
 
 import clsx from "clsx";
 import EmptyState from "../components/EmptyState";
-import { useSession } from "next-auth/react";
+import useConversation from "../hooks/useConversation";
 
 const Home = () => {
-  /*  const { isOpen } = useConversation(); */
-  const session = useSession();
-  console.log(session);
+  const { isOpen } = useConversation();
 
   return (
-    <div className={clsx("lg:pl-80 h-full lg:block", "hidden")}>
+    <div
+      className={clsx("lg:pl-80 h-full lg:block", isOpen ? "block" : "hidden")}
+    >
       <EmptyState />
     </div>
   );
