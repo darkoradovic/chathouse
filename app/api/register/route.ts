@@ -1,5 +1,5 @@
 import { hash } from "bcrypt";
-import prisma from '@/app/libs/prismadb'
+import prisma from "@/app/libs/prismadb";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
       data: {
         name,
         email: email.toLowerCase(),
-        hashedPassword: `${hashed_password}`
+        hashedPassword: `${hashed_password}`,
       },
     });
 
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       user: {
         name: user.name,
         email: user.email,
-        password: user.hashedPassword
+        password: user.hashedPassword,
       },
     });
   } catch (error: any) {

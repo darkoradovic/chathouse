@@ -18,9 +18,9 @@ const Auth = () => {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <Image
           height="48"
-          width="48"
-          className="mx-auto w-auto"
-          src="/logo.png"
+          width="200"
+          className="mx-auto "
+          src="/logo.svg"
           alt="Logo"
         />
         <h2
@@ -30,7 +30,7 @@ const Auth = () => {
             text-3xl 
             font-bold 
             tracking-tight 
-            text-gray-900
+            text-app-purple
           "
         >
           Sign in to your account
