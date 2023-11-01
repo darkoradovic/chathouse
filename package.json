@@ -19,6 +19,7 @@
     "lodash": "^4.17.21",
     "next": "13.3.1",
     "next-auth": "^4.24.3",
+    "next-cloudinary": "^5.0.0",
     "next-pwa": "^5.6.0",
     "next-superjson-plugin": "^0.5.9",
     "react": "^18",
