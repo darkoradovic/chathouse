@@ -42,7 +42,8 @@ const Header: React.FC<HeaderProps> = ({ conversation }) => {
       />
       <div
         className="
-        bg-white 
+        bg-white
+        dark:bg-dark 
         w-full 
         flex 
         border-b-[1px] 

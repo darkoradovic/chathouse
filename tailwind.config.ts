@@ -15,9 +15,12 @@ const config: Config = {
       },
       colors: {
         "app-purple": "#6c1cdc",
+        dark: "#212121",
+        "user-list": "#424242",
       },
     },
   },
+  darkMode: "class",
   plugins: [],
 };
 export default config;

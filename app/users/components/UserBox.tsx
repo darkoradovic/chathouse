@@ -26,7 +26,7 @@ const UserBox: React.FC<UserBoxProps> = ({ data }) => {
   }, [data, router]);
 
   return (
-    <>
+    <div className="pb-2">
       {isLoading && <LoadingModal />}
       <div
         onClick={handleClick}
@@ -42,6 +42,7 @@ const UserBox: React.FC<UserBoxProps> = ({ data }) => {
           rounded-lg
           transition
           cursor-pointer
+        dark:bg-user-list
         "
       >
         <Avatar user={data} />
@@ -49,12 +50,14 @@ const UserBox: React.FC<UserBoxProps> = ({ data }) => {
           <div className="focus:outline-none">
             <span className="absolute inset-0" aria-hidden="true" />
             <div className="flex justify-between items-center mb-1">
-              <p className="text-sm font-medium text-gray-900">{data.name}</p>
+              <p className="text-sm font-medium text-gray-900 dark:text-white">
+                {data.name}
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

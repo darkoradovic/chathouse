@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ToasterContext from "./context/ToasterContext";
 import NextAuthProvider from "./context/AuthContext";
+import NextThemeProvider from "./context/ThemeContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,10 +24,12 @@ export default function RootLayout({
         <meta name="theme-color" content="#350693" />
       </head>
       <body className={inter.className}>
-        <NextAuthProvider>
-          <ToasterContext />
-          {children}
-        </NextAuthProvider>
+        <NextThemeProvider>
+          <NextAuthProvider>
+            <ToasterContext />
+            {children}
+          </NextAuthProvider>
+        </NextThemeProvider>
       </body>
     </html>
   );

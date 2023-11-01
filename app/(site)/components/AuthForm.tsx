@@ -11,6 +11,7 @@ import { toast } from "react-hot-toast";
 import Input from "@/app/components/inputs/Input";
 import Button from "@/app/components/Button";
 import AuthSocialButton from "./AuthSocialButton";
+import { randomAvatars } from "@/app/helper";
 
 type Variant = "LOGIN" | "REGISTER";
 
@@ -43,6 +44,7 @@ const AuthForm = () => {
       name: "",
       email: "",
       password: "",
+      image: randomAvatars(),
     },
   });
 
@@ -110,6 +112,7 @@ const AuthForm = () => {
       <div
         className="
         bg-white
+        dark:bg-dark
           px-4
           py-8
           shadow
@@ -166,7 +169,7 @@ const AuthForm = () => {
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-white px-2 text-gray-500">
+              <span className="bg-white px-2 text-gray-500 dark:bg-dark">
                 Or continue with
               </span>
             </div>

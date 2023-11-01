@@ -12,6 +12,8 @@ import Modal from "../modals/Modal";
 import Button from "../Button";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
+import { avatarImages } from "@/app/helper";
+import ThemeToggler from "../ThemeToggler";
 
 interface SettingsModalProps {
   isOpen?: boolean;
@@ -47,6 +49,11 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
       shouldValidate: true,
     });
   };
+  const handleUploadLocal = (path: string) => {
+    setValue("image", path, {
+      shouldValidate: true,
+    });
+  };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -72,13 +79,17 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                 font-semibold 
                 leading-7 
                 text-gray-900
+                dark:text-white
               "
             >
               Profile
             </h2>
-            <p className="mt-1 text-sm leading-6 text-gray-600">
-              Edit your public information.
-            </p>
+            <div className="flex justify-between">
+              <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-white">
+                Edit your public information.
+              </p>
+              <ThemeToggler />
+            </div>
 
             <div className="mt-10 flex flex-col gap-y-8">
               <Input
@@ -98,6 +109,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     font-medium 
                     leading-6 
                     text-gray-900
+                    dark:text-white
                   "
                 >
                   Photo
@@ -118,9 +130,26 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     uploadPreset="f7mxd4qn"
                   >
                     <Button disabled={isLoading} secondary type="button">
-                      Change
+                      Upload from computer
                     </Button>
                   </CldUploadButton>
+                </div>
+                <p className="text-gray-900 dark:text-white text-sm flex justify-center py-4">
+                  OR chose one of our avatars
+                </p>
+                <div className="flex justify-center flex-wrap gap-2">
+                  {avatarImages.map((image: string) => {
+                    return (
+                      <Image
+                        width="48"
+                        height="48"
+                        className="rounded-full cursor-pointer"
+                        src={image}
+                        alt="Avatar"
+                        onClick={() => handleUploadLocal(image)}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </div>

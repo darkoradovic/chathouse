@@ -4,10 +4,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, password } = (await req.json()) as {
+    const { name, email, password, image } = (await req.json()) as {
       name: string;
       email: string;
       password: string;
+      image: string;
     };
     const hashed_password = await hash(password, 10);
 
@@ -16,6 +17,7 @@ export async function POST(req: NextRequest) {
         name,
         email: email.toLowerCase(),
         hashedPassword: `${hashed_password}`,
+        image: image,
       },
     });
 
@@ -24,6 +26,7 @@ export async function POST(req: NextRequest) {
         name: user.name,
         email: user.email,
         password: user.hashedPassword,
+        image: user.image,
       },
     });
   } catch (error: any) {

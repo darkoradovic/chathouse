@@ -19,9 +19,11 @@ const AuthSocialButton: React.FC<AuthSocialButtonProps> = ({
         justify-center 
         rounded-md 
         bg-white 
+        dark:bg-dark
         px-4 
         py-2 
         text-gray-500 
+        dark:text-white
         shadow-sm 
         ring-1 
         ring-inset 
