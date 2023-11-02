@@ -17,6 +17,11 @@ const Select: React.FC<SelectProps> = ({
   options,
   disabled,
 }) => {
+  const styles = {
+    fontSize: 14,
+    color: "blue",
+  };
+
   return (
     <div className="z-[100]">
       <label
@@ -26,6 +31,7 @@ const Select: React.FC<SelectProps> = ({
           font-medium 
           leading-6 
           text-gray-900
+          dark:text-white
         "
       >
         {label}
@@ -40,9 +46,16 @@ const Select: React.FC<SelectProps> = ({
           menuPortalTarget={document.body}
           styles={{
             menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+            menuList: (provided, state) => ({
+              ...provided,
+              paddingTop: 0,
+              paddingBottom: 0,
+            }),
           }}
           classNames={{
-            control: () => "text-sm",
+            control: () => "text-sm dark:bg-user-list dark:text-white",
+            option: () =>
+              "text-sm dark:bg-user-list dark:text-white cursor-pointer p-0",
           }}
         />
       </div>

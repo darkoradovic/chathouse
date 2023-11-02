@@ -82,6 +82,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
         rounded-lg
         transition
         cursor-pointer
+        mb-2
         `,
         selected ? "bg-neutral-100" : "bg-gray-100"
       )}
