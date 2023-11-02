@@ -112,6 +112,9 @@ const ConversationList: React.FC<ConversationListProps> = ({
                 rounded-full 
                 p-2 
                 bg-gray-100 
+                dark:bg-dark
+                hover:dark:bg-user-list
+                hover:dark:text-white 
                 text-gray-600 
                 cursor-pointer 
                 hover:opacity-75 
