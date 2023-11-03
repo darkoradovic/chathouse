@@ -7,9 +7,10 @@ import Image from "next/image";
 
 interface AvatarProps {
   user?: User;
+  isChatBox?: boolean;
 }
 
-const Avatar: React.FC<AvatarProps> = ({ user }) => {
+const Avatar: React.FC<AvatarProps> = ({ user, isChatBox }) => {
   const { members } = useActiveList();
   const isActive = members.indexOf(user?.email!) !== -1;
 
@@ -33,7 +34,7 @@ const Avatar: React.FC<AvatarProps> = ({ user }) => {
           alt="Avatar"
         />
       </div>
-      {isActive ? (
+      {isChatBox ? null : isActive ? (
         <span
           className="
             absolute 

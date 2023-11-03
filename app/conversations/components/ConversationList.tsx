@@ -113,6 +113,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
         border-gray-200 
         bg-white
         dark:bg-dark
+        dark:border-r-[#424242]
       `,
           isOpen ? "hidden" : "block w-full left-0"
         )}
@@ -128,12 +129,12 @@ const ConversationList: React.FC<ConversationListProps> = ({
                 rounded-full 
                 p-2 
                 bg-gray-100 
-                dark:bg-dark
+                dark:bg-app-purple
+                dark:text-white
                 hover:dark:bg-user-list
                 hover:dark:text-white 
                 text-gray-600 
                 cursor-pointer 
-                hover:opacity-75 
                 transition
               "
             >

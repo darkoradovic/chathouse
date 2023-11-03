@@ -49,6 +49,7 @@ const Form = () => {
         gap-2 
         lg:gap-4 
         w-full
+        dark:border-t-[#424242]
       "
     >
       <CldUploadButton

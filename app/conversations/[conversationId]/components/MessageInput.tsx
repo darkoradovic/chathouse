@@ -32,7 +32,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
           py-2
           px-4
           bg-neutral-100 
-        dark:bg-user-list
+          dark:bg-user-list
           w-full 
           rounded-full
           focus:outline-none

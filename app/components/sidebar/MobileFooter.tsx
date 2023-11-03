@@ -23,8 +23,10 @@ const MobileFooter = () => {
         flex 
         items-center 
         bg-white 
+        dark:bg-dark
         border-t-[1px] 
         lg:hidden
+        dark:border-t-[#424242]
       "
     >
       {routes.map((route) => (
