@@ -30,4 +30,5 @@ Full stack NextJS 13 chat app build from scratch using Prisma, MongoDB, Tailwind
 
 ## 📊 Project status
 
-✅ Ongoing
+✅ Finished
+✅ Adding new features
