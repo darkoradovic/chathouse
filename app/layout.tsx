@@ -4,6 +4,7 @@ import "./globals.css";
 import ToasterContext from "./context/ToasterContext";
 import NextAuthProvider from "./context/AuthContext";
 import NextThemeProvider from "./context/ThemeContext";
+import ActiveStatus from "./components/ActiveStatus";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         <NextThemeProvider>
           <NextAuthProvider>
             <ToasterContext />
+            <ActiveStatus />
             {children}
           </NextAuthProvider>
         </NextThemeProvider>

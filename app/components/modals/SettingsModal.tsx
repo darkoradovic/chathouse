@@ -138,9 +138,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                   OR chose one of our avatars
                 </p>
                 <div className="flex justify-center flex-wrap gap-2">
-                  {avatarImages.map((image: string) => {
+                  {avatarImages.map((image: string, index: number) => {
                     return (
                       <Image
+                        key={index}
                         width="48"
                         height="48"
                         className="rounded-full cursor-pointer"
