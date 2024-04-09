@@ -6,9 +6,10 @@ import UserBox from "./UserBox";
 
 interface UserListProps {
   items: User[];
+  currentUser: User;
 }
 
-const UserList: React.FC<UserListProps> = ({ items }) => {
+const UserList: React.FC<UserListProps> = ({ items, currentUser }) => {
   return (
     <aside
       className="

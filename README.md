@@ -32,3 +32,6 @@ Full stack NextJS 13 chat app build from scratch using Prisma, MongoDB, Tailwind
 
 ✅ Finished
 ✅ Adding new features
+
+//TODO
+-add search users but by email,dont show every user

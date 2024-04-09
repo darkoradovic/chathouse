@@ -68,9 +68,9 @@ export async function POST(request: Request, { params }: { params: IParams }) {
     });
 
     // If user has already seen the message, no need to go further
-    if (lastMessage.seenIds.indexOf(currentUser.id) !== -1) {
+    /*  if (lastMessage.seenIds.indexOf(currentUser.id) !== -1) {
       return NextResponse.json(conversation);
-    }
+    } */
 
     // Update last message seen
     await pusherServer.trigger(

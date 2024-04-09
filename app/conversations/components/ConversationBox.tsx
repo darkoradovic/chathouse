@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Conversation, Message, User } from "@prisma/client";
 import { format } from "date-fns";
@@ -10,24 +10,23 @@ import clsx from "clsx";
 import Avatar from "@/app/components/Avatar";
 import useOtherUser from "@/app/hooks/useOtherUser";
 import AvatarGroup from "@/app/components/AvatarGroup";
-import { FullConversationType } from "@/app/types";
+import { FullConversationType, FullMessageType } from "@/app/types";
 
 interface ConversationBoxProps {
   data: FullConversationType;
   selected?: boolean;
+  totalUnseenCount?: number;
 }
 
 const ConversationBox: React.FC<ConversationBoxProps> = ({
   data,
   selected,
+  totalUnseenCount,
 }) => {
   const otherUser = useOtherUser(data);
   const session = useSession();
   const router = useRouter();
-
-  const handleClick = useCallback(() => {
-    router.push(`/conversations/${data.id}`);
-  }, [data, router]);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   const lastMessage = useMemo(() => {
     const messages = data.messages || [];
@@ -52,7 +51,12 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
     }
 
     return seenArray.filter((user) => user.email === userEmail).length !== 0;
-  }, [userEmail, lastMessage]);
+  }, [userEmail, lastMessage, buttonClicked]);
+
+  const handleClick = useCallback(() => {
+    router.push(`/conversations/${data.id}`);
+    setButtonClicked(true);
+  }, [data, router]);
 
   const lastMessageText = useMemo(() => {
     if (lastMessage?.image) {
@@ -112,19 +116,33 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
               </p>
             )}
           </div>
-          <p
-            className={clsx(
-              `
+          <div className="flex  items-center">
+            {!hasSeen && (
+              <div className="bg-app-purple rounded-md text-white py-[2px] px-[6px] mr-2 text-[10px]">
+                new
+              </div>
+            )}
+            <p
+              className={clsx(
+                `
               truncate 
               text-sm
               `,
-              hasSeen
-                ? "text-gray-500 dark:text-white"
-                : "text-black font-medium dark:text-white"
-            )}
-          >
-            {lastMessageText}
-          </p>
+                hasSeen
+                  ? "text-gray-500 dark:text-white"
+                  : "text-black font-bold dark:text-white"
+              )}
+            >
+              {lastMessageText}
+            </p>
+            {/*  {!hasSeen && totalUnseenCount !== 0 && (
+              <div className="bg-app-purple text-white p-1 rounded-[50%] text-xs ">
+                <p className="flex items-center justify-center w-4 font-extrabold">
+                  {totalUnseenCount}
+                </p>
+              </div>
+            )} */}
+          </div>
         </div>
       </div>
     </div>

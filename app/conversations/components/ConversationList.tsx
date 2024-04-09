@@ -12,21 +12,25 @@ import useConversation from "@/app/hooks/useConversation";
 //import { pusherClient } from "@/app/libs/pusher";
 import GroupChatModal from "@/app/components/modals/GroupChatModal";
 import ConversationBox from "./ConversationBox";
-import { FullConversationType } from "@/app/types";
+import { FullConversationType, FullMessageType } from "@/app/types";
 import { pusherClient } from "@/app/libs/pusher";
+import axios from "axios";
 
 interface ConversationListProps {
   initialItems: FullConversationType[];
   users: User[];
   title?: string;
+  currentUser: User;
 }
 
 const ConversationList: React.FC<ConversationListProps> = ({
   initialItems,
   users,
+  currentUser,
 }) => {
   const [items, setItems] = useState(initialItems);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newMessages, setNewMessages] = useState<FullMessageType[]>([]);
 
   const router = useRouter();
   const session = useSession();
@@ -91,6 +95,43 @@ const ConversationList: React.FC<ConversationListProps> = ({
     };
   }, [pusherKey, router, conversationId]);
 
+  useEffect(() => {
+    const fetchMessages = async (conversationId: string) => {
+      try {
+        const response = await axios.get(
+          `/api/messages?conversationId=${conversationId}`
+        );
+        const fetchedMessages = response.data;
+        setNewMessages(fetchedMessages);
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    };
+
+    // Iterate through each item and fetch messages
+    items.forEach((item) => {
+      fetchMessages(item.messages[0]?.conversationId); // Assuming the key is 'conversationID'
+    });
+  }, [items]);
+
+  const unseeenCount = useMemo(() => {
+    let count = 0;
+    for (let i = newMessages.length - 1; i >= 0; i--) {
+      const message = newMessages[i];
+      if (!message.seenIds.includes(currentUser.id)) {
+        if (
+          i === newMessages.length - 1 ||
+          !newMessages[i + 1].seenIds.includes(currentUser.id)
+        ) {
+          count++;
+        } else {
+          break; // Stop counting if the previous message of the last message contains your ID
+        }
+      }
+    }
+    return count;
+  }, [newMessages, currentUser]);
+
   return (
     <>
       <GroupChatModal
@@ -146,6 +187,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
               key={item.id}
               data={item}
               selected={conversationId === item.id}
+              totalUnseenCount={unseeenCount}
             />
           ))}
         </div>

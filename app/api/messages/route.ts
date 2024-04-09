@@ -73,3 +73,25 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json("An error ocured.", { status: 500 });
   }
 };
+
+export const GET = async (req: NextRequest) => {
+  try {
+    const conversationId = req.url?.split("=")[1];
+
+    if (!conversationId) {
+      return NextResponse.json("An error ocured.", { status: 400 });
+    }
+
+    // Fetch messages for the specified conversationId
+    const messages = await prisma.message.findMany({
+      where: {
+        conversationId: conversationId,
+      },
+    });
+
+    return NextResponse.json(messages);
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+    return NextResponse.json("An error ocured.", { status: 400 });
+  }
+};
