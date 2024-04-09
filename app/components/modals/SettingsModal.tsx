@@ -124,7 +124,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     }
                     alt="Avatar"
                   />
-                  <CldUploadButton
+                  {/*  <CldUploadButton
                     options={{ maxFiles: 1 }}
                     onUpload={handleUpload}
                     uploadPreset="f7mxd4qn"
@@ -132,10 +132,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     <Button disabled={isLoading} secondary type="button">
                       Upload from computer
                     </Button>
-                  </CldUploadButton>
+                  </CldUploadButton> */}
                 </div>
                 <p className="text-gray-900 dark:text-white text-sm flex justify-center py-4">
-                  OR chose one of our avatars
+                  chose one of our avatars
                 </p>
                 <div className="flex justify-center flex-wrap gap-2">
                   {avatarImages.map((image: string, index: number) => {
