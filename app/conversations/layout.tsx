@@ -14,6 +14,7 @@ export default async function ConversationsLayout({
   const currentUser = await getCurrentUser();
 
   return (
+    //@ts-ignore
     <Sidebar>
       <div className="h-full">
         <ConversationList

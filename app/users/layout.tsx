@@ -12,6 +12,7 @@ export default async function UsersLayout({
   const currentUser = await getCurrentUser();
 
   return (
+    //@ts-ignore
     <Sidebar>
       <div className="h-full">
         <UserList items={users!} currentUser={currentUser!} />
