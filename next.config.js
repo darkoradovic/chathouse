@@ -8,7 +8,14 @@ const withPWA = require("next-pwa")({
 
 const nextConfig = withPWA({
   reactStrictMode: true,
+  output: "export",
   swcMinify: true,
+  transpilePackages: [
+    "@ionic/react",
+    "@ionic/core",
+    "@stencil/core",
+    "ionicons",
+  ],
   experimental: {
     appDir: true,
     //swcPlugins: [["next-superjson-plugin", {}]],
